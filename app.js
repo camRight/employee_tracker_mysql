@@ -87,7 +87,7 @@ async function addDepartment() {
             name: "department"
         }])
         console.log(response)
-        const data = await query(`INSERT INTO department (name) VALUES ("${response.department}")`) 
+        const data = await query(`INSERT INTO department (name) VALUES ("${response.department}");`) 
         menu()
 };
 
@@ -101,7 +101,7 @@ async function addRoles() {
             }
         ])
         console.log(response)
-        const data = await query(`INSERT INTO role (title) VALUES ("${response.role}")`)
+        const data = await query(`INSERT INTO role (title) VALUES ("${response.role}");`)
         menu()
 };
 
@@ -120,24 +120,25 @@ async function addEmployees() {
             }
         ])
         console.log(response)
-        const data = await query(`INSERT INTO employee (first_name, last_name) VALUES ("${response.firstName}, ${response.lastName}")`)
+        const data = await query(`INSERT INTO employee (first_name, last_name) VALUES ("${response.firstName}", "${response.lastName}");`)
+        
         menu()
     };
 
 async function viewDepartments() {
-   const data = await query("SELECT * FROM department")
+   const data = await query("SELECT * FROM department;")
    console.table(data)
    menu()
 };
 
 async function viewRoles() {
-    const data = await query("SELECT * FROM role")
+    const data = await query("SELECT * FROM role;")
     console.table(data)
     menu()
 };
 
 async function viewEmployees() {
-    const data = await query("SELECT * FROM employee")
+    const data = await query("SELECT * FROM employee;")
     console.table(data)
     menu()
 };
