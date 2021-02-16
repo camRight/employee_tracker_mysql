@@ -2,8 +2,6 @@ USE employee_tracker_db;
 
 INSERT INTO `department` (name) VALUES ("Sales"), ("Engineering"), ("Finance"), ("Legal");
 
-SELECT * FROM department;
-
 -- VALUES must match schema structure
 INSERT INTO `role` (title, salary, department_id) 
 VALUES 
@@ -15,8 +13,6 @@ VALUES
     ("Legal Team Lead", 250000.00, 4),
     ("Lawyer", 190000.00, 4),
     ("Lead Engineer", 150000.00, 2);
-
-SELECT * FROM role;
 
 INSERT INTO `employee` (first_name, last_name) VALUES
 	("John", "Doe"),

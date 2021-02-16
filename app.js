@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
 const util = require("util");
+
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -63,13 +64,12 @@ function menu() {
                     updateRoles()
                     break;
             }
-            // Use user feedback for... whatever!!
         })
         .catch(error => {
             if (error.isTtyError) {
-                // Prompt couldn't be rendered in the current environment
+                console.log("Cannot be rendered in current environment")
             } else {
-                // Something else when wrong
+                throw error;
             }
         });
 
