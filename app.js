@@ -72,10 +72,7 @@ function menu() {
                 throw error;
             }
         });
-
-}
-
-
+};
 
 
 
@@ -106,6 +103,11 @@ async function addRoles() {
 };
 
 async function addEmployees() {
+    let roles = query(`SELECT DISTINCT title FROM role ORDER BY title;`);
+    console.log(roles)
+    let roleArr = Object.value(roles);
+
+    console.log(roleArr);
     const response = await inquirer
         .prompt ([
             {
@@ -117,11 +119,43 @@ async function addEmployees() {
             type: "input",
             message: "Employee's last name?",
             name: "lastName"
+            },
+            {
+            type: "list",
+            message: "Employee's role?",
+            choices: [roleArr],
+            name: "empRole"
             }
         ])
+
+        // function roleFunc() {
+        //     let roleArr = Object.values(roles);
+        //     // for (let i= 0; i < roles.length; i++) {
+        //     //     roleArr.push(roles[i])
+        //     // }
+
+
+
+
+        //     return roleArr;
+        // };
+
+        // console.log(roleArr)
+        // for (let i = 0; i < data.length; i++) {
+        //     if (data[i].title === response.empRole) {
+        //         response.role_id = data[i].id;
+        //     }
+        // } 
+
         console.log(response)
-        const data = await query(`INSERT INTO employee (first_name, last_name) VALUES ("${response.firstName}", "${response.lastName}");`)
-        
+        const data = await query("INSERT INTO employee SET ?", {
+            first_name: response.firstName,
+            last_name: response.lastName,
+            role_id: response.role_id
+        }, (err, data) => {
+            if (err) throw err;
+        });
+        console.table(data)
         menu()
     };
 
@@ -138,7 +172,7 @@ async function viewRoles() {
 };
 
 async function viewEmployees() {
-    const data = await query("SELECT * FROM employee;")
+    const data = await query("SELECT employee.id, employee.first_name, employee.last_name, role.title, FROM employee, role WHERE (employee.role_id=role.id) OR role_id IS NULL;")
     console.table(data)
     menu()
 };
