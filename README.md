@@ -6,9 +6,15 @@ Employee Tracker is a mySQL database designed to create a relational Content Man
 ## Technologies
 
 -mySQL
+
 -pure JS
+
 -Node and the NPM Library
+
   -Inquirer
+  
   -mySQL
+  
   -Utils
+  
   -
