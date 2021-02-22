@@ -123,7 +123,7 @@ async function addRoles() {
             });
             console.log("New role added.")
             menu()
-        })
+        });
 
 };
 
@@ -132,43 +132,6 @@ async function addRoles() {
 
 
 async function addEmployees() {
-
-    // RowDataPacket is a normal constructor object in an array
-    // let roles = await query(`SELECT DISTINCT title FROM role ORDER BY id;`);
-    // console.log(roles)
-
-    // console.log(roles)
-    // let roleObj = (Object.values(roles));
-
-    // checking if array
-    // console.log([0].constructor.name);
-
-    //  may need to concat arrays? probably not though... one big array
-
-    // let roleArr = [i].;
-
-    // console.log(error, roleObj); 
-    // returns 8
-
-    // rolesArr[[role, id], [role, id]...]
-
-
-    // let rolesArr = [];
-    // roles.forEach((obj, i) => {
-    //     let roleAndId = [obj.title, roles[i]]
-    //     rolesArr.push(roleAndId)
-
-    //     // below works
-    //     // rolesArr.push(obj.title)
-    //     idNum = roles[i]
-    // });
-
-    //  psuedo column with id that passes along both name and number
-
-
-
-    // console.log((roles[0].title));
-    // console.log(rolesArr);
     const rolesArr = await query("SELECT * FROM role")
     const newRolesArr = rolesArr.map(role => ({ name: role.title, value: role.id }))
 
@@ -210,30 +173,6 @@ async function addEmployees() {
     });
     console.log("New employee added.")
     menu()
-    // function roleFunc() {
-    //     let roleArr = Object.values(roles);
-    //     // for (let i= 0; i < roles.length; i++) {
-    //     //     roleArr.push(roles[i])
-    //     // }
-
-
-
-
-    //     return roleArr;
-    // };
-
-    // console.log(roleArr)
-    // for (let i = 0; i < data.length; i++) {
-    //     if (data[i].title === response.empRole) {
-    //         response.role_id = data[i].id;
-    //     }
-    // } 
-
-
-
-
-
-   
 };
 
 async function viewDepartments() {
@@ -275,18 +214,6 @@ async function updateRoles() {
 
     const response = await inquirer
         .prompt([
-            // for update employees role, not implemented.
-            // {
-            //     type: "input",
-            //     message: "Empolyee's first name for update:",
-            //     name: "updateFirst"
-            // },
-            // {
-            //     type: "input",
-            //     message: "Employee's last name for update:",
-            //     name: "employeeLast"
-            // },
-
             {
                 type: "list",
                 message: "Update info on which employee?",
@@ -298,14 +225,13 @@ async function updateRoles() {
                 message: "Update which role?",
                 choices: newRolesArr,
                 name: "roleId"
-            } 
+            }
         ])
     const data = await query("UPDATE employee SET ? WHERE ?",
         [
-            {role_id: response.roleId },
-            { id: response.employeeId}
+            { role_id: response.roleId },
+            { id: response.employeeId }
         ])
-        console.log("Employees new role updated.")
-        menu()
-    
+    console.log("Employees new role updated.")
+    menu()
 };
