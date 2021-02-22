@@ -19,7 +19,7 @@ This is a backend CMS so the information can be delivered as an API to the front
   
   - Utils
 
-  -console.table
+  - console.table
   
-- VScode
+-VScode
 
