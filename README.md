@@ -23,3 +23,6 @@ This is a backend CMS so the information can be delivered as an API to the front
   
 -VScode
 
+## Links
+
+https://github.com/camRight/employee_tracker_mysql/
