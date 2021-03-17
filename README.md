@@ -25,4 +25,6 @@ This is a backend CMS so the information can be delivered as an API to the front
 
 ## Links
 
-https://github.com/camRight/employee_tracker_mysql/
+Repository Link: https://github.com/camRight/employee_tracker_mysql/
+
+Youtube Video Demonstration: https://www.youtube.com/watch?v=J7JoSwUlVB0
