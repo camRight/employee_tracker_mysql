@@ -2,8 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
 const util = require("util");
-const { error } = require("console");
-const { DefaultDeserializer } = require("v8");
+
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -11,7 +10,7 @@ const connection = mysql.createConnection({
     user: "root",
     password: "password",
     database: "employee_tracker_db"
-})
+});
 
 const query = util.promisify(connection.query).bind(connection);
 
